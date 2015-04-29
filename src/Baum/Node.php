@@ -137,7 +137,9 @@ abstract class Node extends Model {
       });
     }
   }
-
+public function getOriginalParentId() {
+    return $this->getOriginal($this->getparentColumnName());
+  }
   /**
   * Get the parent column name.
   *
@@ -511,7 +513,7 @@ abstract class Node extends Model {
    * @return boolean
    */
   public function isRoot() {
-    return is_null($this->getParentId());
+    return ($this->exists) ? is_null($this->getOriginalParentId()) : is_null($this->getParentId());
   }
 
   /**
