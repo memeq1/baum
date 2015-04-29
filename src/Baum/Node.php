@@ -987,7 +987,15 @@ public function getOriginalParentId() {
   public function makeRoot() {
     return $this->moveTo($this, 'root');
   }
+public static function rebuildTree($nodeList) {
+   return with(new static)->updateTree($nodeList);
+  }
+  
+  public function updateTree($nodeList) {
+   $mapper = new SetMapper($this);
 
+  return $mapper->updateMap($nodeList);
+  }
   /**
    * Equals?
    *
